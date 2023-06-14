@@ -1,6 +1,5 @@
 def search_and_replace_diamonds(text, key, value)
   text.gsub(/<#{key}>/, value.to_s)
-  text.gsub(/<#{key}>/, value.to_s)
 end
 
 text = "Hello <name> ! Your name is <name>. Cost of your order is <cost>"

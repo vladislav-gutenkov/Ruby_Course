@@ -1,9 +1,9 @@
 puts "Введите номер телефона"
-number = gets.strip
+number = gets.chomp.gsub(/\D/, "")
 
-if number.match(/(^(\+7?|7?|8?)\d{10}$)/)
-  if number.match(/^\+7|^7|^8/)
-    num = number.sub(/\+7|7|8/, "")
+if number.match(/(^(7?|8?)\d{10}$)/)
+  if number.match(/^7|^8/)
+    num = number.sub(/7|8/, "")
     num = "7" + num
   else
     num = "7" + number
