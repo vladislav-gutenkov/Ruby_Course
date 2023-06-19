@@ -9,7 +9,7 @@ loop do
     puts email_checker.inspect
   elsif user_input =~ (/ADD/)
     user_input = user_input.gsub(/ADD\s/, "")
-    if user_input =~ (/^\w+@\w+\.[a-z]+/)
+    if user_input =~ (/^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i)
       email_checker << user_input
       puts "Успешно добавлен"
     else
