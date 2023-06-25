@@ -10,13 +10,21 @@ class Elevator
   end
 
   def move_down
-    @current_floor -= 1
-    get_current_floor
+    if @current_floor > @min_floor
+      @current_floor -= 1
+      get_current_floor
+    else
+      puts "ниже некуда"
+    end
   end
 
   def move_up
-    @current_floor += 1
-    get_current_floor
+    if @current_floor < @max_floor
+      @current_floor += 1
+      get_current_floor
+    else
+      puts "выше некуда"
+    end
   end
 
   def move(floor)
