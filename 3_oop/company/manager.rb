@@ -1,7 +1,6 @@
-require_relative "company"
-
 class Manager
   attr_reader :cash_for_company, :name, :position
+  attr_accessor :company
 
   MIN_MONEY_AMOUNT_FOR_COMPANY = 115_000
   MAX_MONEY_AMOUNT_FOR_COMPANY = 140_000
@@ -11,27 +10,31 @@ class Manager
 
   def initialize(name)
     @name = name
-    @position = "manager"
+    @company = nil
   end
 
-  def work(company, _amount=WORKING_SHIFT)
-    if company.employes.include?(self)
-    WORKING_SHIFT.times do
-      @cash_for_company = rand(MIN_MONEY_AMOUNT_FOR_COMPANY..MAX_MONEY_AMOUNT_FOR_COMPANY)
+  def work
+    @cash_for_company = 0
+    if @company.nil?
+      puts "#{@name} не работает в компании"
+    else
+      WORKING_SHIFT.times do
+        @cash_for_company += rand(MIN_MONEY_AMOUNT_FOR_COMPANY..MAX_MONEY_AMOUNT_FOR_COMPANY)
+      end
       company.income += @cash_for_company
     end
-    else
-      puts "#{@name} не работает в компании"
-    end
-    company.get_income
   end
 
   def get_salary
-    puts "зарплата менеджера: #{@salary}"
+    @salary.round
   end
 
-  def take_salary(*_arg)
+  def take_salary
+    if @company.nil?
+      puts "#{@name} не работает в компании поэтому не получает зп"
+    else
     @salary = SALARY + @cash_for_company * BONUS_PER
-    get_salary
+    puts get_salary
+    end
   end
 end

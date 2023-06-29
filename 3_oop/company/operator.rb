@@ -1,21 +1,24 @@
-require_relative "company"
-
 class Operator
   attr_reader :name
+  attr_accessor :company
 
   SALARY = 30_000
 
   def initialize(name)
     @name = name
-    @position = "operator"
+    @company = nil
   end
 
   def get_salary
-    puts "зарплата оператора :#{@salary}"
+    @salary
   end
 
-  def take_salary(*_arg)
+  def take_salary
+    if @company.nil?
+      puts "#{@name} не работает в компании поэтому не получает зп"
+    else
     @salary = SALARY
-    get_salary
+    puts get_salary
+    end
   end
 end

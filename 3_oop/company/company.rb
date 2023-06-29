@@ -3,7 +3,8 @@ require_relative "topmanager"
 require_relative "operator"
 
 class Company
-  attr_accessor :income, :employes
+  attr_accessor :income
+  attr_reader :employes, :name
 
   def initialize(name)
     @name = name
@@ -16,7 +17,8 @@ class Company
       puts "#{employee.name} уже работает в нашей компании"
     else
       @employes << employee
-      get_employes
+      employee.company = self
+      puts @employes.inspect
     end
   end
 
@@ -26,18 +28,18 @@ class Company
 
   def fire(employee)
     @employes.delete(employee)
-    get_employes
+    employee.company = nil
   end
 
   def get_employes
-    puts @employes.inspect
+    @employes
   end
 
-  def accrue_salary(name)
-    @employes.each {|employee| employee.take_salary(name)}
+  def accrue_salary
+    @employes.each {|employee| employee.take_salary}
   end
 
   def get_income
-    puts "компания заработала #{@income}"
+    @income
   end
 end
