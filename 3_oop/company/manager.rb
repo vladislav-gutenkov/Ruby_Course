@@ -1,5 +1,5 @@
 class Manager
-  attr_reader :cash_for_company, :name, :position
+  attr_reader :cash_for_company, :name, :position, :salary
   attr_accessor :company
 
   MIN_MONEY_AMOUNT_FOR_COMPANY = 115_000
@@ -33,8 +33,13 @@ class Manager
     if @company.nil?
       puts "#{@name} не работает в компании поэтому не получает зп"
     else
-    @salary = SALARY + @cash_for_company * BONUS_PER
-    puts get_salary
+      @salary = calculate_salary
     end
+  end
+
+  private
+
+  def calculate_salary
+    SALARY + @cash_for_company * BONUS_PER
   end
 end

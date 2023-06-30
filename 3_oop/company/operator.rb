@@ -1,5 +1,5 @@
 class Operator
-  attr_reader :name
+  attr_reader :name, :salary
   attr_accessor :company
 
   SALARY = 30_000
@@ -17,8 +17,7 @@ class Operator
     if @company.nil?
       puts "#{@name} не работает в компании поэтому не получает зп"
     else
-    @salary = SALARY
-    puts get_salary
+      @salary = SALARY
     end
   end
 end

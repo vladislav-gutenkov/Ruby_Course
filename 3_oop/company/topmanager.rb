@@ -1,5 +1,5 @@
 class TopManager
-  attr_reader :name
+  attr_reader :name, :salary
   attr_accessor :company
 
   SALARY = 100_000
@@ -19,12 +19,17 @@ class TopManager
     if @company.nil?
       puts "#{@name} не работает в компании поэтому не получает зп"
     else
-    if company.income > BONUS_IF_INCOME
-      @salary = SALARY + SALARY * BONUS_PER
-    else
-      @salary = SALARY
+      @salary = calculate_salary
     end
-    puts get_salary
+  end
+
+  private
+
+  def calculate_salary
+    if company.income > BONUS_IF_INCOME
+      SALARY + SALARY * BONUS_PER
+    else
+      SALARY
     end
   end
 end

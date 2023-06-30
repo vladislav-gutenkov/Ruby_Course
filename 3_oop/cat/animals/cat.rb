@@ -1,4 +1,5 @@
 class Cat
+  include Comparable
   attr_reader :name, :cats, :weigth, :korm, :water
 
   MIN_WEIGHT = 1000
@@ -12,6 +13,10 @@ class Cat
     @@cats += 1
     @korm = 0
     @water = 0
+  end
+
+  def <=>(another_cat)
+    self.weigth <=> another_cat.weigth
   end
 
   def toilet
