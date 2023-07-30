@@ -8,7 +8,6 @@ def convert_csv_to_json(path_to_csv)
   file_josn = File.new(path_to_csv.sub(/\.csv/, ".json"), "a:UTF-8")
 
   value_json = []
-  json = {movements: value_json}
 
   file_csv.each do |row|
     hash = {}
@@ -19,7 +18,7 @@ def convert_csv_to_json(path_to_csv)
   end
 
   File.open(file_josn, "a") do |file|
-    file.write(json.to_json)
+    file.write(value_json.to_json)
   end
 end
 
